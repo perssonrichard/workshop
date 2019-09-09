@@ -8,6 +8,9 @@ error_reporting(E_ALL);
 // dependencies
 require("gameController.php");
 
+// TODO: move store handling here! 
+// $this->store->SaveGame($this->game);
+
 // initialize new game
 // TODO: support for options
 $game = new gameController();

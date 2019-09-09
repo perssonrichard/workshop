@@ -23,12 +23,8 @@ class View {
   public function GetGameResultOutput() {
     $corectGuess = $this->game->WasGuessCorrect();
 
-    if($corectGuess) {
-      $result = "Winner!";
-    } else {
-      $result = "Incorrect!";
-    }
-
+    $result = ($corectGuess) ? "Winner!" : "Incorrect!";
+   
     return $result;
   }
 

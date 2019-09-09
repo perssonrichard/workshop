@@ -13,11 +13,8 @@ class GameController {
 
   private $view;
   private $game;
-  // TODO: move to model
-  private $gameTitle = "Guess-a-number-game";
+  private $gameTitle = "Guess-a-number-game"; // TODO: move to model
   
-  // constructor ; initialize with a random value in interval
-  // as defined by rules
   public function __construct() {
     $this->store = new Store();
     $this->game = $this->store->getCurrentGame();
@@ -33,8 +30,7 @@ class GameController {
     if($this->view->hasUserGuessNumber()) {      
       $guess = $this->view->GetUserGuess();    
       $this->game->MakeGuess($guess);
-      $resultHTML = "guess was made!";
-      $resultHTML .= $this->view->GetGameResultOutput();
+      $resultHTML = $this->view->GetGameResultOutput();
     }  else {
       $resultHTML = '';
     }
@@ -42,6 +38,7 @@ class GameController {
     // append form
     $resultHTML .= $this->view->GetUserInputForm();
 
+    // save storage in session
     $this->store->SaveGame($this->game);
 
     // show html

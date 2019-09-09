@@ -31,7 +31,6 @@
       session_destroy();
     }
 
-  
     public function GetCurrentGame() {
       $currentGame = $this->get($this->STRING_NAME);
       
