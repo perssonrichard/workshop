@@ -13,12 +13,12 @@ class Game {
   
   public function __construct() {
     $this->hiddenNumber = $this->GenerateHiddenNumber();
+    $this->rules = new Rules();
   }
 
   public function GenerateHiddenNumber()
   {
-    // TODO: use rules
-    return mt_rand(1, 27); 
+    return mt_rand($this->rules->minGuessValue, $this->rules->maxGuessValue); 
   }
 
   public function MakeGuess($guess) {
