@@ -13,6 +13,7 @@
 
     public function get(string $key)
     {
+      if(!isset($_SESSION[$key])) return false;
       return $_SESSION[$key];
     }
 
