@@ -7,8 +7,8 @@ require_once("game.php");
  */
 class View {
 
-  public function __construct() {
-    $this->game = new Game();
+  public function __construct($game) {
+    $this->game = $game;
   }
 
   public function GetUserInputForm() {
@@ -21,15 +21,15 @@ class View {
   }
 
   public function GetGameResultOutput() {
-    $corectGuess = $this->game->CompareGuess($guess);
+    $corectGuess = $this->game->WasGuessCorrect();
 
-      if($corectGuess) {
-        $result = "Winner!";
-      } else {
-        $result = "Incorrect!";
-      }
+    if($corectGuess) {
+      $result = "Winner!";
+    } else {
+      $result = "Incorrect!";
+    }
 
-      return $result;
+    return $result;
   }
 
   public function HasUserGuessNumber() {

@@ -1,9 +1,13 @@
 <?php
 
+  require_once("game.php");
+
   /**
-   * Session-based storage
+   * Session-based (game) storage
    */
   class Store {
+
+    private $STRING_NAME = "randomNumberX";
 
     // constructor; initialize PHP session
     public function __construct()
@@ -17,7 +21,7 @@
       return $_SESSION[$key];
     }
 
-    public function set(string $key, string $value)
+    public function set(string $key, $value)
     {
       $_SESSION[$key] = $value;
     }
@@ -25,6 +29,22 @@
     public function destroy()
     {
       session_destroy();
+    }
+
+  
+    public function GetCurrentGame() {
+      $currentGame = $this->get($this->STRING_NAME);
+      
+      if($currentGame == false) {
+        return new Game();
+      } else {
+        return $currentGame;
+      }
+    }
+
+    public function SaveGame($game) 
+    {
+      $this->set($this->STRING_NAME, $game);
     }
 
   }
