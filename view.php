@@ -1,9 +1,15 @@
 <?php
 
+require_once("game.php");
+
 /**
  * HTML output view
  */
 class View {
+
+  public function __construct() {
+    $this->game = new Game();
+  }
 
   public function GetUserInputForm() {
     $output = "<form name=\"form\" action=\"index.php\">
@@ -14,10 +20,22 @@ class View {
     return $output;
   }
 
+  public function GetGameResultOutput() {
+    $corectGuess = $this->game->CompareGuess($guess);
+
+      if($corectGuess) {
+        $result = "Winner!";
+      } else {
+        $result = "Incorrect!";
+      }
+
+      return $result;
+  }
+
   public function HasUserGuessNumber() {
     // TODO: move magic string?
     // TODO: validate input!
-    return (isset($_GET["guess"])); 
+    return (isset($_GET["guess"]) && strlen($_GET["guess"]) > 0); 
   }
 
   public function GetUserGuess() 
